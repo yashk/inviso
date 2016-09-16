@@ -27,13 +27,14 @@ def main():
                                           cluster_id=cluster.id, 
                                           cluster_name=cluster.name, 
                                           host=cluster.namenode,
-					  port=cluster.namenode_port,
-					  log_path=cluster.history_server,
+					                                port=cluster.namenode_port,
+					                                log_path=cluster.history_server,
                                           publisher=publisher,
                                           elasticsearch=settings.elasticsearch))
     
     for monitor in monitors:
         try:
+            log.info("running monitors")
             monitor.run()
             monitor.close()
         except Exception as e:

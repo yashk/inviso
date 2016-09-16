@@ -291,9 +291,15 @@ class HdfsMr2LogMonitor(ElasticSearchMonitor):
         self.port = port
         self.log_path = log_path
     def run(self):
+        log.info("inside HdfsMr2LogMonitor run")
         c = Client(self.host, self.port)
+        log.info('got Client run ' + c)
+
 
         listing = c.ls([self.log_path], recurse=True)
+
+        log.info('got listing  ' + listing)
+
 
         for f in listing:
             path = f['path']
