@@ -293,16 +293,18 @@ class HdfsMr2LogMonitor(ElasticSearchMonitor):
     def run(self):
         log.info("inside HdfsMr2LogMonitor run")
         c = Client(self.host, self.port)
-        log.info('got Client run ' + c)
+        log.info('got Client run ')
 
 
         listing = c.ls([self.log_path], recurse=True)
 
-        log.info('got listing  ' + listing)
+        log.info('got listing ')
 
 
         for f in listing:
             path = f['path']
+            log.info('path ' + path)
+
 
             if not path.endswith('.jhist'):
                 continue
