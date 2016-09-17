@@ -72,8 +72,8 @@ public class TraceService implements ServletContextListener {
         log.info("Initializing Trace Service");
         
         config = new Configuration();
-        config.addResource(new Path("/root/inviso/inviso/hadoop-conf/conf/core-site.xml"));
-        config.addResource(new Path("/root/inviso/inviso/hadoop-conf/conf/hdfs-site.xml"));
+        config.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/core-site.xml"));
+        config.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/hdfs-site.xml"));
         
         properties = new PropertiesConfiguration();
         try {
