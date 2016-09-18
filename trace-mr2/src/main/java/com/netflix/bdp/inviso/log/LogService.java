@@ -59,7 +59,10 @@ public class LogService {
                         @QueryParam("root") String root) throws IOException {
         
         Configuration conf = new Configuration();
-        
+        conf.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/core-site.xml"));
+        conf.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/hdfs-site.xml"));
+
+
         if(fs != null) {
             conf.set("fs.default.name", fs);
         }
