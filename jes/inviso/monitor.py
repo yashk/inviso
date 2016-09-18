@@ -9,6 +9,7 @@ import arrow
 from util import get_logger
 
 from snakebite.client import Client
+from snakebite.client import AutoConfigClient
 
 log = get_logger('inviso-monitor')
 
@@ -292,8 +293,8 @@ class HdfsMr2LogMonitor(ElasticSearchMonitor):
         self.log_path = log_path
     def run(self):
         log.info("inside HdfsMr2LogMonitor run")
-        c = Client(self.host, self.port)
-        log.info('got Client run ')
+        c = AutoConfigClient()
+        log.info('got Client run')
 
 
         listing = c.ls([self.log_path], recurse=True)

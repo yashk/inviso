@@ -8,6 +8,7 @@ import cStringIO as StringIO
 from urlparse import urlparse
 
 from snakebite.client import Client
+from snakebite.client import AutoConfigClient
 from elasticsearch.helpers import bulk
 
 import boto
@@ -160,9 +161,9 @@ class IndexHandler(EventHandler):
         p = urlparse(uri)
 
         if p.scheme == 'hdfs':
-            host, port = p.netloc.split(':')
-
-            c = Client(host, int(port))
+            #host, port = p.netloc.split(':')
+            # c = Client(host, int(port))
+            c = AutoConfigClient()
 
             content = StringIO.StringIO()
 
