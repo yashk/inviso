@@ -74,6 +74,8 @@ public class TraceService implements ServletContextListener {
         config = new Configuration();
         config.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/core-site.xml"));
         config.addResource(new org.apache.hadoop.fs.Path("/root/inviso/inviso/hadoop-conf/conf/hdfs-site.xml"));
+
+        log.info("Hadoop Config " + config);
         
         properties = new PropertiesConfiguration();
         try {
@@ -128,8 +130,12 @@ public class TraceService implements ServletContextListener {
         }
         
         TraceJobHistoryLoader loader = new TraceJobHistoryLoader(properties);
+
+        log.info("hdfs path " + historyPath.getRight());
         
         FileSystem fs = FileSystem.get(historyPath.getRight().toUri(), config);
+        log.info("got fs path " + fs);
+
         CompressionCodec codec = new CompressionCodecFactory(config).getCodec(historyPath.getRight());
         
         FSDataInputStream fin = fs.open(historyPath.getRight());
